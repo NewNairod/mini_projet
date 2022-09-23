@@ -19,25 +19,25 @@ addUser=event => {
   if(typ === "repos" || "maladie" || "urgent" || "longue durée")
   {
     typ = this.state.type;
+    if(typ !== "repos")
+    {
+      caus = caus;
+    }
+    else
+    {
+      // eslint-disable-next-line no-unused-expressions
+      caus != undefined; 
+    }
   }
   else
    {
     typ = 'erreur';
    }
-   if (typ === "repos")
-   {
-     caus = "";
-   }
-   else
-   {
-    // eslint-disable-next-line no-unused-vars
-    caus = this.state.cause;
-   }
   const userObject={
       duree:this.state.duree,
       type:typ,
       debut:this.state.debut,
-      cause:this.state.cause,
+      cause:caus,
 
   }
   
