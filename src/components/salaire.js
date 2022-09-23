@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 export default class Salaire extends React.Component{
-  state = {
+  constructor()
+  {
+  super();
+  this.state = {
   salaire: [],
   nette:'',
   brute:'',
@@ -9,7 +12,9 @@ export default class Salaire extends React.Component{
   avances:'',
   mois:'',
   }
-
+  this.componentDidMount = this.componentDidMount.bind(this);
+  this.deleteRow = this.deleteRow.bind(this);
+  }
   addUser=event => {
     const userObject={
         nette:this.state.nette,

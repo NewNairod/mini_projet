@@ -1,15 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 export default class Employes extends React.Component{
-  state = {
+  constructor()
+  {
+  super();
+  this.state = {
   Employes: [],
   nom:'',
   prenom:'',
   age:'',
   grade:'',
   adresse:'',
+  };
+  this.componentDidMount = this.componentDidMount.bind(this);
+  this.deleteRow = this.deleteRow.bind(this);
   }
-
   onChange= e=> {
     this.setState({ [e.target.name] :e.target.value});
 };
