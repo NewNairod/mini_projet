@@ -93,7 +93,7 @@ Ajouter Conge
       <div className="modal-body">
       <form method="post" onSubmit={this.addUser}>
                
-                Duree:<input className="form-control" type="number" value={this.state.duree} onChange={this.onChange} name="duree"></input>
+                Duree:<input className="form-control" type="number" min="1" value={this.state.duree} onChange={this.onChange} name="duree"></input>
                 <br></br>Type:<input type="text" className="form-control" value={this.state.type} name="type" onChange={this.onChange}></input>
                 <br></br>Debut:<input type="date" className="form-control" value={this.state.debut} name="date" onChange={this.onChange}></input>
                 <br></br>Cause:<input type="text" className="form-control" value={this.state.cause} name="cause" onChange={this.onChange}></input>
