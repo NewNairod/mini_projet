@@ -2,8 +2,60 @@ import React from 'react';
 import axios from 'axios';
 export default class Conge extends React.Component{
   state = {
-  Conge: []
+  Conge: [],
+  duree:'',
+  type:'',
+  debut:'',
+  cause:'',
   }
+
+  onChange= e=> {
+    this.setState({ [e.target.name] :e.target.value});
+};
+
+addUser=event => {
+  let typ = this.state.type;
+  let caus = this.state.cause;
+  if(typ === "repos" || "maladie" || "urgent" || "longue durée")
+  {
+    typ = this.state.type;
+  }
+  else
+   {
+    typ = 'erreur';
+   }
+   if (typ === "repos")
+   {
+     caus = "";
+   }
+   else
+   {
+    // eslint-disable-next-line no-unused-vars
+    caus = this.state.cause;
+   }
+  const userObject={
+      duree:this.state.duree,
+      type:typ,
+      debut:this.state.debut,
+      cause:this.state.cause,
+
+  }
+  
+  axios.post(`https://632c28895568d3cad87e602c.mockapi.io/Conge/`,userObject)
+  .then(res => {
+  
+  this.setState({ 
+      duree:'',
+      type:'',
+      debut:'',
+      cause:'',
+});
+  })
+  event.preventDefault();
+  alert("ajouté ");
+  window.location.reload();
+  }
+
   componentDidMount() {
     axios.get(`https://632c28895568d3cad87e602c.mockapi.io/Conge`)
     .then(res => {
@@ -22,9 +74,40 @@ export default class Conge extends React.Component{
       this.setState({ Conge });
       })
       }
+
     render() {
       return(
         <>
+<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+Ajouter Conge
+</button>
+
+
+<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Ajout de conge</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body">
+      <form method="post" onSubmit={this.addUser}>
+               
+                Duree:<input className="form-control" type="number" value={this.state.duree} onChange={this.onChange} name="duree"></input>
+                <br></br>Type:<input type="text" className="form-control" value={this.state.type} name="type" onChange={this.onChange}></input>
+                <br></br>Debut:<input type="date" className="form-control" value={this.state.debut} name="date" onChange={this.onChange}></input>
+                <br></br>Cause:<input type="text" className="form-control" value={this.state.cause} name="cause" onChange={this.onChange}></input>
+                <br></br><button className='btn btn-primary' type="submit" >Ajouter</button>
+            </form>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
         <h2 className="text-center">Axios Read/delete Conge</h2>
         <table className="table table-bordered">
 <thead>

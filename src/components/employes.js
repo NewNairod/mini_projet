@@ -99,7 +99,7 @@ Ajouter Employes
                 <br></br>Prenom:<input type="text" className="form-control" pattern="[a-zA-Z ]*" minlength="3" value={this.state.prenom} name="prenom" onChange={this.onChange}></input>
                 <br></br>age:<input type="number" className="form-control" value={this.state.age} name="age" onChange={this.onChange}></input>
                 <br></br>grade<input type="text" className="form-control" value={this.state.grade} name="grade" onChange={this.onChange}></input>
-                <br></br>adresse<input type="text" className="form-control" value={this.state.adresse} name="adresse" onChange={this.onChange}></input>
+                <br></br>adresse<input type="text" minlength="20" className="form-control" value={this.state.adresse} name="adresse" onChange={this.onChange}></input>
                 <br></br><button className='btn btn-primary' type="submit" >Ajouter</button>
             </form>
       </div>
