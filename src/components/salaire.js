@@ -16,11 +16,39 @@ export default class Salaire extends React.Component{
   this.deleteRow = this.deleteRow.bind(this);
   }
   addUser=event => {
+    let net = this.state.nette;
+    let brut = this.state.brute;
+    let tax = this.state.taxes;
+    let avance = this.state.avances;
+    if(brut < net + (10/100)*net)
+    {
+      brut = "valeur inférieur à 10% du net";
+    }
+    else
+    {
+      brut = brut;
+    }
+    if(tax > (20/100) * brut )
+    {
+      tax = "taxes supérieur à 20% du brut";
+    }
+    else
+    {
+      tax =tax;
+    }
+    if(avance >= (35/100) * brut )
+    {
+      avance = "taxes supérieur ou égal à 35% du brut";
+    }
+    else
+    {
+      avance =avance;
+    }
     const userObject={
-        nette:this.state.nette,
-        brute:this.state.brute,
-        taxes:this.state.taxes,
-        avances:this.state.avances,
+        nette:net,
+        brute:brut,
+        taxes:tax,
+        avances:avance,
         mois:this.state.mois,
 
     }
